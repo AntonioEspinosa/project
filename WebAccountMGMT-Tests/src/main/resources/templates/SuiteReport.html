@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<!--
+	Landed by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Landed by HTML5 UP</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="classes/assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="classes/assets/css/noscript.css" />
+    </noscript>
+
+</head>
+
+<body class="is-preload landing">
+    <div id="page-wrapper">
+
+        <!-- Header -->
+
+
+        <!-- Banner -->
+        <div th:each="suite, stats: ${suites}">
+            <section id="banner">
+                <div class="content">
+                    <header>
+                        <h2 th:text="${suite.getName()}">HTML TEMPLATING POC</h2>
+                        <p>easiest way to construct better quality html reports for<br />
+                            test suites you love</p>
+                    </header>
+                    <span class="image"><img src="images/pic01.jpg" alt="" /></span>
+                </div>
+                <a th:href="'#'+${stats.index}" href="#" class="goto-next scrolly">Next</a>
+            </section>
+            <div th:id="${stats.index}" th:each="suiteTestResult,stats: ${suite.getResults().entrySet()}">
+                <div class="content">
+                    <div class="container">
+                        <div class="row gtr-150">
+                            <div class="col-8 col-12-medium">
+                                <div class="table-wrapper">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Test Method Name</th>
+                                                <th>Test Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <div th:each="ISuiteResult  :${suiteTestResult.getValue()}">
+                                                <tr  th:each="tests  : ${ISuiteResult.getTestContext().getPassedTests().getAllResults()}">
+                                                    <td th:text="${tests.getName()}"></td>
+                                                    <td >Passed</td>
+                                                </tr>
+                                                <tr  th:each="tests  : ${ISuiteResult.getTestContext().getFailedTests().getAllResults()}">
+                                                    <td th:text="${tests.getName()}"></td>
+                                                    <td>Failed</td>
+                                                </tr>
+                                                <tr  th:each="tests  : ${ISuiteResult.getTestContext().getSkippedTests().getAllResults()}">
+                                                    <td th:text="${tests.getName()}"></td>
+                                                    <td>Skipped</td>
+                                                </tr>
+                                            </div>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                            <div class="col-4 col-12-medium" >
+                                <div class="col-4 col-12-medium"></div>
+                                <div class="content">
+                                    <header>
+                                        <h2 th:text="${suiteTestResult.getValue().getTestContext().getName()+ ' Test Class'}">Interdum felis blandit praesent sed augue</h2>
+                                        <p>this is a custom report method</p>
+                                    </header>
+                                    <p>Place here some fancy or relevant  information about your test because
+                                        you have total control about information that is given with testng test context.
+                                        if you need to send a email-able report just attach your css and js inside the
+                                        html page, also logic does not need to be Embedded,have total control over the view
+                                    </p>
+                                    <ul class="actions">
+                                        <li><a href="#2" class="button">click the down arrow</a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="spotlightM">
+                            <a th:href="'#'+${stats.index+1}" class="goto-next scrolly">Next</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="classes/assets/js/jquery.min.js"></script>
+    <script src="classes/assets/js/jquery.scrolly.min.js"></script>
+    <script src="classes/assets/js/jquery.dropotron.min.js"></script>
+    <script src="classes/assets/js/jquery.scrollex.min.js"></script>
+    <script src="classes/assets/js/browser.min.js"></script>
+    <script src="classes/assets/js/breakpoints.min.js"></script>
+    <script src="classes/assets/js/util.js"></script>
+    <script src="classes/assets/js/main.js"></script>
+
+</body>
+
+</html>

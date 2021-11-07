@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+
+    
+    <test verbose="2" preserve-order="true" name="SumTests">
+
+        <classes>
+            <class name="account.login.sumTests">
+                <methods>
+                    <include name="sumAPlusB"/>
+                    <include name="sumAPlusBWhitDouble"/>
+                </methods>
+            </class>
+
+        </classes>
+
+    </test>
+    <test verbose="2" preserve-order="true" name="ExpiredCreditCardTest">
+
+        <classes>
+            <class name="account.checkout.creditcard.ExpiredCreditCardTest">
+
+            </class>
+
+        </classes>
+
+    </test>
+</suite>

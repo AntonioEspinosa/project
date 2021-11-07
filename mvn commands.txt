@@ -1,0 +1,2 @@
+mvn clean -Dtest=codechallenge.LoginPageTest#checkOutFlowTest2 test
+mvn clean -Dtest=codechallenge.LoginPageTest test
